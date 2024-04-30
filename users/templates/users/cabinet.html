@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="{% static 'users/css/registration.css' %}">
+    <title>Личный кабинет</title>
+</head>
+<body>
+    <div class="registration_window">
+        <h3>Пользователь: {{ content.phone_number }}</h3>
+        <h4>Ваш код-приглашение: {{ content.invite_code }}</h4>
+        <form method="POST">
+            <table>
+                {% csrf_token %}
+                {{ forms }}
+            </table>
+            <input id="button" type="submit" value="Send" >
+        </form>
+        <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+    <button type="submit">logout</button>
+        <h4>Ваши подписчики: {{ content.subscriptions }}</h4>
+</form>
+    </div>
+</body>
+</html>
